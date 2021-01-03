@@ -17,6 +17,7 @@ s.listen(3)
 print("Esperando por la conexion,el servidor ha sido iniciado")
 
 def FHilo_Cliente(conn):
+    conn.send(str.encode("Conxion exitosa"))
     reply=""
     while True:
         try:
@@ -31,7 +32,8 @@ def FHilo_Cliente(conn):
             conn.sendall(str.encode(reply))
         except:
             break
-
+    print("Se ha perdido la conexion")
+    conn.close()
 while True:
     conn,addr =s.accept()
     print("Conectado a :",addr)
